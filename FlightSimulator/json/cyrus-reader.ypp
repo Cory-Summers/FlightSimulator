@@ -18,25 +18,20 @@ void RemoveQuotes(std::string & s)
 int yylex(void);
 int yyparse();
 void yyerror(const char *);
+
 %}
-%parse-param {std::shared_ptr<cyrus::Container> & container}
+%parse-param {std::shared_ptr<cyrus::Container> & container} {std::stack<std::shared_ptr<cyrus::Data>> & data_stack}
 %union{
-  struct safe{
-  double      dval;
-  int64_t     ival;
-  std::string stringval;
-  std::shared_ptr<cyrus::Container> container_ptr;
-  std::shared_ptr<cyrus::Section>   section_ptr;
-  std::shared_ptr<cyrus::Object>    object_ptr;
-  std::shared_ptr<cyrus::Data>      data_ptr;
-  std::list<std::shared_ptr<cyrus::Data>> array_ptr;
-  };
+  double  dval;
+  int64_t ival;
+  char *  sval;
+  cyrus::Data * data_ptr;
 }
 %token <dval>   FLOAT
 %token <ival>   INTEGER
-%token <stringval> STRING
-%token <stringval> SECTION_ID
-%type  <stringval> name
+%token <sval> STRING
+%token <sval> SECTION_ID
+%type  <sval> name
 /*
 %type <section_ptr> section_list
 %type <object_ptr> object_list;
@@ -45,22 +40,22 @@ void yyerror(const char *);
 %type <array_ptr> array_var
 %%
 section_list
-  : SECTION_ID '{' object_list '}' {$<std::shared_ptr<cyrus::Section>$ = container->sections.emplace_back(std::make_shared<cyrus::Section>(RemoveQuotes($1)));}
-  | SECTION_ID '{' object_list '}'',' section_list {$<std::shared_ptr<cyrus::Section>$ = container->sections.emplace_back(std::make_shared<cyrus::Section>(RemoveQuotes($1)));}
+  : SECTION_ID '{' object_list '}'
+  | SECTION_ID '{' object_list '}'',' 
   ;
 object_list
-  : name '{' variable_list '}' { $<std::shared_ptr<cyrus::Object>$ = $<std::shared_ptr<cyrus::Section>0->objects.emplace_back(std::make_shared<cyrus::Object>($1));}
-  | name '{' variable_list '}'',' object_list { $<std::shared_ptr<cyrus::Object>$ = $<std::shared_ptr<cyrus::Section>0->objects.emplace_back(std::make_shared<cyrus::Object>($1));}
+  : name '{' variable_list '}'',' object_list { data_stack.top()}
+  | name '{' variable_list '}' 
   ;
 variable_list
-  : variable ',' variable_list { $<std::shared_ptr<cyrus::Object>0->data.push_back($1); }
-  | variable { $<std::shared_ptr<cyrus::Object>0->push_back($1); }
+  : variable ',' variable_list {data_stack.top()->emplace($1)}
+  | variable { data_stack.top()->emplace($1); data_stack.pop(); }
   ;
 variable 
-  : name STRING  { $$ = std::make_shared<cyrus::StringData>($1, $2));  }
-  | name FLOAT   { $$ = std::make_shared<cyrus::FloatingData>($1, $2); }
-  | name INTEGER { $$ = std::make_shared<cyrus::IntegerData>($1, $2);  }
-  | name array_var { $$ = std::make_shared<cyrus::ArrayData>($1, $2); }
+  : name STRING    { $$ = new cyrus::StringData($1, $2);   }
+  | name FLOAT     { $$ = new cyrus::FloatingData($1, $2); }
+  | name INTEGER   { $$ = new cyrus::IntegerData($1, $2);  }
+  | name array_var { $$ = new cyrus::ArrayData($1, $2);    }
   ;
 array_var
   : '[' array_list ']' { $$ = std::list<std::shared_ptr<cyrus::Data>(); }
@@ -78,8 +73,8 @@ name
 std::shared_ptr<cyrus::Container> ReadCyrusFile(std::string const &)
 {
   std::shared_ptr<cyrus::Container> container = std::make_shared<cyrus::Container>();
-  std::stack<std::shared_ptr<cyrus::Data>>
-  yyparse(container);
+  std::stack<std::shared_ptr<cyrus::Data>> * data_stack = new std::stack<std::shared_ptr<cyrus::Data>>();
+  yyparse(container, data_stack);
   return container;
 }
 

@@ -21,8 +21,12 @@ INTEGERS {
   converter >> yylval.ival;
   return INTEGER;
 }
-("\"([^\"]*)\"","\"x\"") {
-  yylval.string = std::string(yytext);
+("[^\"\\]*(\\.[^\"\\]*)*") {
+  if(string != nullptr)
+  {
+    delete yylval.string;
+  }
+  yylval.stringval = new std::string(yytext);
   return STRING;
 }
 BREAKS { return *yytext; }
@@ -30,7 +34,7 @@ BREAKS { return *yytext; }
 
 "PLANETS" |
 "STAR" {
-  yylval.string = std::string(yytext);
+  yylval.stringval = new std::string(yytext);
   return SECTION_ID; 
 }
 
