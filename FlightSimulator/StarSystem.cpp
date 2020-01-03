@@ -59,12 +59,6 @@ void Celestial::StarSystem::Initialize()
 void Celestial::StarSystem::Update()
 {
   double dt = m_time.GetCount();
-  /*
-  for (auto& b : m_natural_body)
-    orbit_pool.Add(&Kepler::CalculateMovement, (Kepler::ObjectBase *)b.get(), dt);
-  orbit_pool.WaitFinished();
-  */
-  ///*
   {
     std::unique_lock<std::mutex> lock(m_natural_mutex);
     m_cv_natural.wait(lock, [this]() {return true; });

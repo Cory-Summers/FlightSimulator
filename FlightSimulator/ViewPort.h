@@ -1,7 +1,7 @@
 #pragma once
+/*
 #include "SFML/Graphics.hpp"
 #include "StarSystem.h"
-namespace Application {
   class ViewPort
   {
   public:
@@ -21,7 +21,7 @@ namespace Application {
     void Zoom();
     sf::RenderWindow* m_window;
     sf::View* m_view;
-    sf::Event        m_event_handler;
+    sf::Event m_event_handler;
     Celestial::StarSystem* m_system;
     TimeController* m_time;
     std::vector<sf::Shape*> natural_objects;
@@ -33,5 +33,5 @@ namespace Application {
     double scale = 7400e6;
   };
   const sf::Color background_color = sf::Color(32, 32, 32, 255);
-};
 
+  */

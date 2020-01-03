@@ -2,9 +2,12 @@
 #include <cstdint>
 #include <array>
 namespace ETS {
-  struct IDField {
-    uint16_t type : 6;
-    uint64_t id_num : 58;
+  union IDField {
+    struct {
+      uint16_t type : 6;
+      uint64_t id_num : 58;
+    };
+    uint64_t id;
   };
   class IDGenerator
   {

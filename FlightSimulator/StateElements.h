@@ -1,11 +1,7 @@
 #pragma once
 #include <chrono>
-#include <SFML/Window.hpp>
 #include <iostream>
 #include "Vector3.h"
-namespace sf {
-  typedef sf::Vector3<double> Vector3d;
-}
 namespace Physics {
   class StateVector;
   struct StateElements

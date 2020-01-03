@@ -1,10 +1,12 @@
 #pragma once
 #include "Object.h"
 #include "TimeControl.h"
-namespace Celestial{
+
+namespace Kepler{
   class Star :
     public Kepler::ObjectBase
   {
+    friend class ObjectFactory;
   public:
     Star() {}
     Star(
@@ -18,6 +20,9 @@ namespace Celestial{
     );
     void Initialize() override;
     void Update(double const dt) override;
+    ObjectType GetType() const override  {
+      return ObjectType::star;
+    }
     ~Star() override {}
   };
 }

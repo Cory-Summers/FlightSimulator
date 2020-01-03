@@ -30,6 +30,14 @@ Vector3D::Vector3D(__m256d const& vec) :
 {
 }
 
+Vector3D::Vector3D(std::array<double, 3> const& arr) :
+  quad_arr()
+{
+  int index = 0;
+  for (auto& it : arr)
+    quad_arr[index++] = it;
+}
+
 double& Vector3D::operator[](size_t const& pos)
 {
   return quad_arr[pos];

@@ -1,6 +1,7 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <chrono>
+#include <ctime>
 #include "StateElements.h"
 constexpr std::chrono::seconds J2000Epoch = std::chrono::seconds(946684801ll);
 class TimeController
@@ -10,6 +11,7 @@ class TimeController
   using TimeDelta = std::chrono::nanoseconds;
 public:
   TimeController();
+  TimeController(double const &);
   inline void Start() { this->start = std::chrono::steady_clock::now(); }
   TimeDelta const& Stop();
   inline double GetCount() const {
@@ -18,6 +20,7 @@ public:
   double const& GetScale() const { return time_scale; }
   void SetScale(double const& scale) { time_scale = scale; }
   bool CheckLateUpdate();
+  void DisplayDate();
   TimeStamp const& GetDate() const;
   ~TimeController() {}
 private:
@@ -28,6 +31,6 @@ private:
   TimeStamp sim_date;
   TimeDelta late_delta;
   double sec_elapsed = 0.1;
-  double time_scale = 1.0;
+  double time_scale  = 1.0;
 };
 

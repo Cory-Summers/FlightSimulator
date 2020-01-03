@@ -1,6 +1,6 @@
 #include "Star.h"
 
-Celestial::Star::Star(std::string const & name, 
+Kepler::Star::Star(std::string const & name, 
   Physics::StateVector const& vector, 
   Physics::StateElements const& elements, 
   Physics::RotationVector const& rotation,
@@ -16,12 +16,12 @@ Celestial::Star::Star(std::string const & name,
   
 }
 
-void Celestial::Star::Initialize()
+void Kepler::Star::Initialize()
 {
 
 }
 
-void Celestial::Star::Update(double const dt)
+void Kepler::Star::Update(double const dt)
 {
   CalculateRotation(dt);
   

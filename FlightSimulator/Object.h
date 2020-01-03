@@ -4,14 +4,17 @@
 #include <cstdint>
 #include "StateElements.h"
 #include "GlobalIDManager.h"
-namespace Application {
-  class ViewPort;
-}
 namespace Kepler {
-  
+  enum class ObjectType
+  {
+    na = 0,
+    star = 1,
+    planet = 2,
+    moon = 3,
+    craft = 4
+  };
   class ObjectBase
   {
-    friend class Application::ViewPort;
   public:
     ObjectBase();
     ObjectBase(std::string const &, Physics::StateVector const&, double const &);
@@ -26,6 +29,7 @@ namespace Kepler {
     virtual Physics::RotationVector const& GetRotation() const { return m_rotation; }
     double const& GetMu() const { return mu; }
     ETS::IDField const& GetID() const { return m_id; }
+    virtual ObjectType GetType() const = 0;
   protected:
     virtual void CalculateRotation(double const &);
     void CalculateMovement(double const&);
@@ -40,3 +44,4 @@ namespace Kepler {
   };
   void CalculateMovement(Kepler::ObjectBase* obj, double const& dt);
 };
+

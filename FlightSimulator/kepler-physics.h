@@ -1,5 +1,4 @@
 #pragma once
-#include <SFML/Window.hpp>
 #include "StateElements.h"
 #define _USE_MATH_DEFINES
 #include <cmath>

@@ -3,7 +3,7 @@
 #include <memory>
 #include <cstdint>
 namespace cyrus{
-  class Data;
+  struct Data;
   using data_ptr = std::shared_ptr<Data>;
   using string_ref = std::string const &;
   class Section;
@@ -19,7 +19,7 @@ namespace cyrus{
   };
   struct Data
   { 
-    Data();
+    Data() {}
     Data(string_ref dat) : name(dat) {}
     DataType type;
     DataType const & GetType() const { return type; }
@@ -33,8 +33,8 @@ namespace cyrus{
   };
   struct IntegerData : public Data
   {
-    IntegerData() : IntegerData(std::string(), int64_t()) {}
     IntegerData(string_ref id, int64_t const & dat) : data(dat) { name = id; type = DataType::integer; }
+    IntegerData() : IntegerData(std::string(), int64_t()) {}
     int64_t data;
   };
   struct FloatingData : public Data
@@ -51,10 +51,9 @@ namespace cyrus{
   };
   struct ArrayData : public Data
   {
-    ArrayData() {}
-    ArrayData(string_ref id, std::list<data_ptr> const & list, DataType dat_type) : data(list), array_type(dat_type) { name = id;  type = DataType::array;}
+    ArrayData() { type = DataType::array; }
+    ArrayData(string_ref id, std::list<data_ptr> const & list, DataType dat_type) : data(list) { name = id;  type = DataType::array;}
     std::list<data_ptr> data;
-    DataType array_type;
   };
   struct SectionData : public Data
   {

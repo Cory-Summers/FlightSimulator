@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Application" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAgAAIABAAAQIAAAAAAgAAAAAACAEAAAQAAQAAAAA=</HashCode>
+      <FileName>application.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TimeController" Collapsed="true">
+    <Position X="17" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAAAACACUAAABgAAAAAAIAAAAAABAAJAAAAgACAEA=</HashCode>
+      <FileName>TimeControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThreadPool&lt;T, ...TArgs&gt;" Collapsed="true">
+    <Position X="15.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIEAAACAAAAAAAAAABEAAIAAAAAAAgAIAADAEACAAA=</HashCode>
+      <FileName>ThreadPool.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vector3D" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAEAAAAQAACAEAAAAAAACgAAAAAAA=</HashCode>
+      <FileName>Vector3.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VectorPool" Collapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAEAAAAAAAAAAAAAAgAAABAAAIAAABAAAIAAA=</HashCode>
+      <FileName>VectorPool.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC::Render::PlanetObject" Collapsed="true">
+    <Position X="3.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAQAAIABAAAAAAAAA=</HashCode>
+      <FileName>PlanetObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC::Render::WorldObjectBase" Collapsed="true">
+    <Position X="3.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAQAAAAAAAEAAAAAAAAAgABAAAAAACAA=</HashCode>
+      <FileName>WorldObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC::Render::Renderer" Collapsed="true">
+    <Position X="17" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgAAAAwAAAQAAYAAAAAAIAAiAABEAAAIAACAAACQEBA=</HashCode>
+      <FileName>Renderer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC::Render::ViewRenderer" Collapsed="true">
+    <Position X="13.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAACAAAAAAAAAAAAAAAAAAAIAAAACAAAAAAAAA=</HashCode>
+      <FileName>RendererView.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC::Render::ObjectPool&lt;T, Key&gt;" Collapsed="true">
+    <Position X="15.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIIAAAACAAAAgABAAAAAAABSAACAAAAAAABBAhAIAAA=</HashCode>
+      <FileName>ObjectPool.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpenGL::Transform" Collapsed="true">
+    <Position X="3.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAKAgAAIAAAQAAAAAAAAAAAA0AAEAAAA=</HashCode>
+      <FileName>transform.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpenGL::Camera" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="OpenGL::Camera::Axis" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Camera.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQDCIgRAAAAgACAACAACBAwEAIBAAAgAACCAAAAAAE=</HashCode>
+      <FileName>Camera.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpenGL::Entity" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>entity.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpenGL::Frustum" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Frustum.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpenGL::Model" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ASAAAVABABAAAwAAAAAkAAGAAAgAAEBAAAgAAAAAAAA=</HashCode>
+      <FileName>Model.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC::ConcurrencyController" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAQAAAAIBAAAAAAAEAAA=</HashCode>
+      <FileName>ConcurrencyController.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC::Controller" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controller.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC::Simulation" Collapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAgQAAASAEQAYAAAAIAAAAAgIAAEAAAAABAAAAAA=</HashCode>
+      <FileName>Simulation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kepler::ObjectBase" Collapsed="true">
+    <Position X="1.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgQAAAQBAACIAQABAAAAgAAEAAAAAAUAYEAABQdABAA=</HashCode>
+      <FileName>Object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kepler::ObjectFactory" Collapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>ObjectFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kepler::Planet" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAEAAAIAAAAAAAA=</HashCode>
+      <FileName>planet-class.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kepler::Star" Collapsed="true">
+    <Position X="2.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAQAEAgAAAAAAAAAA=</HashCode>
+      <FileName>Star.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ETS::GlobalIDManager" Collapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AUIAAAAAAAAAAAAAAAAAJAAAAAAIAAAAAAAIAAAgAAA=</HashCode>
+      <FileName>GlobalIDManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ETS::IDGenerator" Collapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAIABAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>IDGenerator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Physics::LagrangeCoeff" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAEAAAAEAAAAACAAAAAYAAQAAAAAAAA=</HashCode>
+      <FileName>kepler-physics.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Physics::StateVector" Collapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAIAAAAAAAAAAAAAAAgAAAAAABFAAAAAAAAA=</HashCode>
+      <FileName>StateElements.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Physics::RotationVector" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAQAAAAAAAAAAAAgBAAAAAAA=</HashCode>
+      <FileName>StateElements.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="OpenGL::Plane" Collapsed="true">
+    <Position X="15.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAEAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Frustum.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="OpenGL::OBJData" Collapsed="true">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAABAQAAAAAAAAAAAQAAAAACAAAAAIEgA=</HashCode>
+      <FileName>object-loader.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="cfg::Window" Collapsed="true">
+    <Position X="10" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAgAAAAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>config.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="OpenGL::DDS::Header" Collapsed="true">
+    <Position X="10" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAYAABAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DDS-tools.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Physics::OrbitState" Collapsed="true">
+    <Position X="13.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABABAAAAACAAAAAAAgAIACAAAAAEAAIAAAAAAAA=</HashCode>
+      <FileName>kepler-physics.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Physics::StateElements" Collapsed="true">
+    <Position X="17" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACQAAAAIgCAAAAAIAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>StateElements.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="MVC::ConcurContr" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConcurrencyController.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="Physics::TimePoint" Collapsed="true">
+    <Position X="10" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StateElements.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="Planes" Collapsed="true">
+    <Position X="11.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAgAAAAAAAAAAQAAAAAAAIAAAACACAAAAAAAA=</HashCode>
+      <FileName>Frustum.cpp</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TypeTag" Collapsed="true">
+    <Position X="13.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>GlobalIDManager.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Kepler::ObjectType" Collapsed="true">
+    <Position X="10" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAABAAAAAAAAAACAAgAAAIAAAAAAAAA=</HashCode>
+      <FileName>Object.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

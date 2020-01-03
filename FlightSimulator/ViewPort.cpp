@@ -1,6 +1,7 @@
 #include "ViewPort.h"
 #include <Windows.h>
 #include "kepler-physics.h"
+/*
 const sf::Color TRANSPARENT_C = sf::Color(0, 0, 0, 0);
 Application::ViewPort::ViewPort() :
   m_window(new sf::RenderWindow),
@@ -162,3 +163,4 @@ void Application::ViewPort::MainLoop()
 Application::ViewPort::~ViewPort()
 {
 }
+*/

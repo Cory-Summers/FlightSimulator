@@ -1,4 +1,5 @@
 %{
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstdint>
 #include <fstream>
@@ -8,82 +9,148 @@
 #include <stack>
 #include "planetary-data.h"
 #include "cyrus-container.h"
-void RemoveQuotes(std::string & s)
-{
-  s.erase(
-    std::remove( s.begin(), s.end(), '\"' ),
-    s.end()
-    );
-}
-int yylex(void);
-int yyparse();
-void yyerror(const char *);
+#include "converter.h"
+extern "C" {
+    void yyerror(void *, void *, const char *s){}
+#include "cyrus-reader.tab.hpp"
+};
+
+extern "C" int yylex(void);
 
 %}
-%parse-param {std::shared_ptr<cyrus::Container> & container} {std::stack<std::shared_ptr<cyrus::Data>> & data_stack}
+%parse-param { Head_t * container} 
+%parse-param { Stack_t * data_stack}
+%code requires
+{
+  #include "datatypes.h"
+  #include "converter.h"
+}
 %union{
   double  dval;
   int64_t ival;
   char *  sval;
-  cyrus::Data * data_ptr;
+  Data_t * data_ptr;
 }
 %token <dval>   FLOAT
 %token <ival>   INTEGER
 %token <sval> STRING
-%token <sval> SECTION_ID
 %type  <sval> name
+%type  <sval> section_id
 /*
 %type <section_ptr> section_list
 %type <object_ptr> object_list;
-*/
+*/  
 %type <data_ptr> variable
-%type <array_ptr> array_var
+%type <data_ptr> array_var
+%type <data_ptr> arr_item
 %%
 section_list
-  : SECTION_ID '{' object_list '}'
-  | SECTION_ID '{' object_list '}'',' 
+  : section_list ',' section_id '{' object_list '}' { 
+    data_stack->top()->name = $3;
+    container->sections.emplace_back(static_cast<cyrus::Section *>(data_stack->top())); 
+    data_stack->pop(); 
+    }
+  | section_id '{' object_list '}' { 
+    data_stack->top()->name = $1;
+    container->sections.emplace_back(static_cast<cyrus::Section *>(data_stack->top())); data_stack->pop(); }
   ;
 object_list
-  : name '{' variable_list '}'',' object_list { data_stack.top()}
-  | name '{' variable_list '}' 
+  : object_list ',' name '{' variable_list '}'  { 
+      cyrus::Object * object_tmp = static_cast<cyrus::Object *>(data_stack->top());
+      data_stack->pop();
+      object_tmp->name = $3;
+      static_cast<cyrus::Section *>(data_stack->top())->objects.emplace_back(object_tmp); 
+    }
+  | name '{' variable_list '}' { 
+    cyrus::Section * sect_temp = new cyrus::Section();
+    data_stack->top()->name = $1; 
+    sect_temp->objects.emplace_back(static_cast<cyrus::Object *>(data_stack->top()));
+    data_stack->pop();
+    data_stack->push(sect_temp);
+    }
   ;
 variable_list
-  : variable ',' variable_list {data_stack.top()->emplace($1)}
-  | variable { data_stack.top()->emplace($1); data_stack.pop(); }
+  : variable_list ',' variable {static_cast<cyrus::Object *>(data_stack->top())->data.emplace_back($3); }
+  | variable { cyrus::Object * temp = new cyrus::Object(); temp->data.emplace_back($1); data_stack->push(temp); }
   ;
 variable 
   : name STRING    { $$ = new cyrus::StringData($1, $2);   }
   | name FLOAT     { $$ = new cyrus::FloatingData($1, $2); }
   | name INTEGER   { $$ = new cyrus::IntegerData($1, $2);  }
-  | name array_var { $$ = new cyrus::ArrayData($1, $2);    }
+  | name array_var { $2->name = $1; $$ = $2; }
   ;
 array_var
-  : '[' array_list ']' { $$ = std::list<std::shared_ptr<cyrus::Data>(); }
+  : '[' array_list ']' { cyrus::ArrayData * arr_tmp = static_cast<cyrus::ArrayData *>(data_stack->top()); data_stack->pop(); $$ = arr_tmp; }
   ;
 array_list
-  : variable ',' array_list { $<array_ptr>0.push_back($1); }
-  | variable { $<array_ptr>0.push_back($1); }
+  : array_list ',' arr_item { static_cast<cyrus::ArrayData *>(data_stack->top())->data.emplace_back($3); }
+  | arr_item { cyrus::ArrayData * tmp_arr = new cyrus::ArrayData(); tmp_arr->data.emplace_back($1); data_stack->push(tmp_arr); }
+  ;
+arr_item 
+  : STRING {  $$ = new cyrus::StringData("", $1);   }
+  | FLOAT  {  $$ = new cyrus::FloatingData("", $1); }
+  | INTEGER { $$ = new cyrus::IntegerData("", $1);  }
   ;
 name
-  : STRING':' { $$ = RemoveQuotes($1); }
+  : STRING':' { $$ =RemoveQuotes($1); }
   ;
+section_id
+  : '$'STRING { $$ = RemoveQuotes($2); }
 
 %%
-
-std::shared_ptr<cyrus::Container> ReadCyrusFile(std::string const &)
+#include "cyrus-parser.h"
+cyrus::Container * _ReadCyrusFile(const char * str);
+extern "C" FILE *yyin;
+void *  ReadCyrusFile(const char* str) { return (void *)_ReadCyrusFile(str); }
+cyrus::Container * _ReadCyrusFile(const char * str)
 {
-  std::shared_ptr<cyrus::Container> container = std::make_shared<cyrus::Container>();
-  std::stack<std::shared_ptr<cyrus::Data>> * data_stack = new std::stack<std::shared_ptr<cyrus::Data>>();
+  FILE * in_file = fopen(str, "r");
+  yyin = in_file;
+  cyrus::Container * container = new cyrus::Container();
+  std::stack<cyrus::Data *> * data_stack = new std::stack<cyrus::Data *>();
   yyparse(container, data_stack);
+  fclose(in_file);
   return container;
 }
-
-int main(int argc, char * argv[])
+void DataInterpret(std::shared_ptr<cyrus::Data> dat)
 {
-  FILE * in_file = fopen(argv[1], "r");
-  yyin = in_file;
-  do{
-    yyparse();
-  } while(!feof(yyin));
+  switch(dat->type)
+  {
+    case cyrus::DataType::string:
+      std::cout << "String > " << dat->name << " : " << static_cast<cyrus::StringData *>(dat.get())->data << '\n';
+      break;
+    case cyrus::DataType::integer:
+      std::cout << "Integer > " << dat->name << " : " << static_cast<cyrus::IntegerData *>(dat.get())->data << '\n';
+      break;
+    case cyrus::DataType::floatpres:
+      std::cout << "Floating > " << dat->name << " : " << static_cast<cyrus::FloatingData *>(dat.get())->data << '\n';
+      break;
+    case cyrus::DataType::array:
+      std::cout << "Array > " << dat->name << " : [\n";
+      for(auto a : static_cast<cyrus::ArrayData *>(dat.get())->data)
+      {
+        DataInterpret(a);
+      }
+      std::cout << "]\n";
+      break;
+  }
+}
+void ReadOut(cyrus::Container * contain)
+{
+  for(auto s : contain->sections)
+  {
+    std::cout << "Section> " << s->name << '\n';
+    for(auto o : s->objects){
+      std::cout << "Object> " << o->name << '\n';
+      for(auto d : o->data)
+      {
+        DataInterpret(d);
+      }
+    }
+  }
+}
+int main(int argc, char * argv[1])
+{
+  _ReadCyrusFile(argv[1]);
   return 0;
 }

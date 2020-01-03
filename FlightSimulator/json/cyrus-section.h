@@ -1,6 +1,5 @@
 #pragma once 
 #include "cyrus-object.h"
-#include <immintrin.h>
 namespace cyrus
 {
   enum class SectionType {
@@ -18,7 +17,5 @@ namespace cyrus
     Section() {}
     Section(string_ref name) : Data(name) {}
     std::list<object_ptr> objects;
-    std::string name;
   };
-  SectionType ParseSectionType(std::string const & name);
 };

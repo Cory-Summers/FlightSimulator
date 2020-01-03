@@ -13,6 +13,16 @@ TimeController::TimeController() :
 {
 }
 
+TimeController::TimeController(double const& val) :
+  start(),
+  end(),
+  delta_t(),
+  sec_elapsed(0.1),
+  time_scale(val),
+  sim_date(J2000Epoch)
+{
+}
+
 TimeDelta const& TimeController::Stop()
 {
   this->end = std::chrono::steady_clock::now();
@@ -30,6 +40,16 @@ bool TimeController::CheckLateUpdate()
     return true;
   }
   return false;
+}
+
+void TimeController::DisplayDate()
+{
+  std::chrono::time_point<std::chrono::system_clock> time_ref = std::chrono::time_point_cast<std::chrono::seconds>(GetDate());
+  std::time_t current = std::chrono::system_clock::to_time_t(time_ref);
+  auto local = gmtime(&current);
+  local->tm_isdst = -1;
+  auto utc = mktime(local);
+  std::cout << ctime(&utc);
 }
 
 TimeStamp const& TimeController::GetDate() const

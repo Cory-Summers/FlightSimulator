@@ -42,6 +42,7 @@
     "iterator": "cpp",
     "iostream": "cpp",
     "cstring": "cpp",
-    "cinttypes": "cpp"
+    "cinttypes": "cpp",
+    "unistd.h": "c"
   }
 }

@@ -2,6 +2,7 @@
 #include <immintrin.h>
 #include <initializer_list>
 #include <iostream>
+#include <array>
 #define _ENABLE_EXTENDED_ALIGNED_STORAGE
 class Vector3D
 {
@@ -12,6 +13,7 @@ public:
   Vector3D(double_ref, double_ref, double_ref);
   Vector3D(std::initializer_list<double>);
   Vector3D(__m256d const&);
+  Vector3D(std::array<double, 3> const&);
   double & operator[] (size_t const&);
   double Normalize() const;
   Vector3D operator * (double_ref);
