@@ -9,7 +9,6 @@
 #include <cstdint>
 #include <vector>
 namespace OpenGL {
-  class Model;
   struct OBJData
   {
     OBJData();
@@ -21,12 +20,10 @@ namespace OpenGL {
     std::vector<glm::vec2> uvs;
     std::vector<glm::vec3> normals;
   };
+  int AssetImportEtay(std::string const& path, OBJData& output);
   int AssetImport(
     std::string const& path,
     OBJData& output
   );
-  int AssetImport(
-    std::string const& path,
-    Model&
-  );
+
 };

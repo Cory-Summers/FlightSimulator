@@ -5,6 +5,7 @@
 #include "Star.h"
 #include "TimeControl.h"
 #include "ConcurrencyController.h"
+#include "planet-class.h"
 namespace MVC {
   class Simulation
   {
@@ -19,7 +20,7 @@ namespace MVC {
     void Cycle(size_t i = 1);
     void AddBody(object_ptr const&);
     void BuildFromFile(std::string const&);
-
+    Kepler::Planet GetBody(size_t pos);
     star_ptr GetStar() const { return m_star; }
     void SetCncrCtrl(ConcurrencyController& obj) { cncr_ctrl = &obj; }
 

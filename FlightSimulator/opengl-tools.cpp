@@ -11,11 +11,6 @@
 namespace  OpenGL {
 
   void LoadObj_ReadFile(std::string const& file_name, OBJData&);
-  void   LoadFromObj(std::string const& file_name, Model& model)
-  {
-    LoadFromObj(file_name, model.obj_data);
-    //loadOBJ(file_name.c_str(), model.obj_data.vertices, model.obj_data.uvs, model.obj_data.normals);
-  }
   void   LoadFromObj(std::string const& file_name, OBJData& obj_data)
   {
     OBJData* temp_data = new OBJData();

@@ -1,21 +1,23 @@
 #include "object-loader.h"
 #include "Model.h"
-
+#include <assimp/scene.h>       // Output data structure
+#include <assimp/postprocess.h> // Post processing flags
+namespace OpenGL
+{
+  const aiScene* ImportScene(std::string const& path);
+  void InitMesh(const aiMesh* mesh, OBJData&);
+};
 OpenGL::OBJData::OBJData()
   : vertices()
   , uvs()
   , normals()
 {
 }
-int OpenGL::AssetImport(std::string const& path, Model& output)
-{
-  return AssetImport(path, output.obj_data);
-}
 int OpenGL::AssetImport(std::string const& path, OBJData& output)
 {
   Assimp::Importer importer;
   OBJData* temp = new OBJData();
-  const aiScene* scene = importer.ReadFile(path, 0/*aiProcess_JoinIdenticalVertices | aiProcess_SortByPType*/);
+  const aiScene* scene = importer.ReadFile(path, aiProcess_JoinIdenticalVertices | aiProcess_SortByPType);
   if (!scene) {
     fprintf(stderr, importer.GetErrorString());
     return false;
@@ -29,8 +31,8 @@ int OpenGL::AssetImport(std::string const& path, OBJData& output)
   }
   // Fill vertices texture coordinates
   temp->uvs.reserve(mesh->mNumVertices);
-  for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
-    aiVector3D UVW = mesh->mTextureCoords[0][i]; // Assume only 1 set of UV coords; AssImp supports 8 UV sets.
+  for (unsigned int k = 0; k < mesh->mNumVertices; k++) {
+    aiVector3D UVW = mesh->mTextureCoords[0][k]; // Assume only 1 set of UV coords; AssImp supports 8 UV sets.
     temp->uvs.push_back(glm::vec2(UVW.x, UVW.y));
   }
   // Fill vertices normals
@@ -53,3 +55,12 @@ int OpenGL::AssetImport(std::string const& path, OBJData& output)
   return true;
 }
 
+
+const aiScene* OpenGL::ImportScene(std::string const& path)
+{
+  Assimp::Importer importer;
+  const aiScene* temp = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_JoinIdenticalVertices);
+  if (temp == nullptr)
+    throw "Can't Load Scene!\n";
+  return temp;
+}

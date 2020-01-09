@@ -2,25 +2,22 @@
 using TimePoint = std::chrono::time_point<std::chrono::steady_clock>;
 using TimeStamp = std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>;
 using TimeDelta = std::chrono::nanoseconds;
-constexpr TimeDelta second = std::chrono::seconds(1);
 TimeController::TimeController() :
-  start(),
-  end(),
-  delta_t(),
   sec_elapsed(0.1),
   time_scale(1.0),
-  sim_date(J2000Epoch)
+  sim_date(J2000Epoch),
+  Timer()
 {
 }
 
 TimeController::TimeController(double const& val) :
-  start(),
-  end(),
-  delta_t(),
+
   sec_elapsed(0.1),
   time_scale(val),
   sim_date(J2000Epoch)
 {
+  start = end = TimePoint();
+  delta_t = TimeDelta();
 }
 
 TimeDelta const& TimeController::Stop()
@@ -33,14 +30,6 @@ TimeDelta const& TimeController::Stop()
   return delta_t;
 }
 
-bool TimeController::CheckLateUpdate()
-{
-  if (late_delta > second) {
-    late_delta -= second;
-    return true;
-  }
-  return false;
-}
 
 void TimeController::DisplayDate()
 {

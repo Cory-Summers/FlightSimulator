@@ -4,6 +4,9 @@
     "height": 1440,
     "attributes": 0,
     "fov": 90.0
+  },
+  "graphics": {
+    "fps":  60
   }
 
 }

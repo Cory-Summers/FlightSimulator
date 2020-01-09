@@ -1,20 +1,20 @@
 #pragma once
 #include "opengl-tools.h"
-#include "transform.h"
 #include <glm/glm.hpp>
-#include <vector>
-#include <list>
+#include <array>
 namespace OpenGL {
-  enum class BufferIdx
+  enum MeshBufIdx : size_t
   {
-    PROGRAM_ID = 0,
-    VERTEX_ID,
-    NORMAL_ID,
-    UV_ID,
-    ELEMENT_ID,
-    TEXTURE_ID
+    MB_PROGRAM_ID = 0,
+    MB_MODEL_ID,
+    MB_VERTEX_ID,
+    MB_NORMAL_ID,
+    MB_UV_ID,
+    MB_ELEMENT_ID,
+    MB_TEXTURE_ID,
+    MB_IDX_SIZE = 7
   };
-  class Mesh : public Transform
+  class Mesh
   {
     struct Attributes {
       GLuint dds : 1;
@@ -26,12 +26,23 @@ namespace OpenGL {
     };
   public:
     Mesh();
-    Mesh(std::string const& obj, GLuint program_id);
+    Mesh(
+      std::string const& obj, 
+      std::string const & uniform_name, 
+      GLuint program_id
+    );
+    void LoadMesh(std::string const&);
+    void SetUniformVariableName(std::string const& var);
+    void LoadBuffers();
+    void Draw();
+    ~Mesh();
   protected:
-    glm::mat4 m_mvp;
+    void LoadModelMatrixID();
+    void DestroyBuffers();
   private:
-    GLuint  m_texture;
-    OBJData m_obj_data;
-    MeshIDs m_IDs;
+    std::string gl_var_name; //uniform variable name
+    OBJData m_objdata;
+    Attributes m_attr;
+    std::array<GLuint, MB_IDX_SIZE> m_buffers;
   };
 };

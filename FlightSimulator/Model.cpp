@@ -1,5 +1,6 @@
 #include "Model.h"
 #include <fstream>
+/*
 OpenGL::Model::Model()
   : obj_data()
   , m_texture_id()
@@ -137,3 +138,4 @@ OpenGL::Model::~Model()
 {
 }
 
+*/

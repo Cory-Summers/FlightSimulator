@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 namespace OpenGL {
+  /*
   class Model
   {
 
@@ -30,4 +31,5 @@ namespace OpenGL {
     BufferID m_uv_id;
     Attributes m_attributes;
   };
+  */
 };

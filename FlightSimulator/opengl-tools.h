@@ -13,11 +13,6 @@ namespace OpenGL
   using UVBuffer = std::vector<glm::vec2>;
   using NormalBuffer = std::vector <glm::vec3>;
  
-
-  void LoadFromObj(
-    std::string const& file_name,
-    Model&
-  );
   void LoadFromObj(
     std::string const& file_name,
     OBJData&

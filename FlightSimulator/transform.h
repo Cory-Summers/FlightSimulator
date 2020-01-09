@@ -11,20 +11,14 @@ namespace OpenGL {
     Transform();
     Transform(vec3_cref, vec3_cref, vec3_cref scale = glm::vec3(1.0f));
     Transform(vec3_cref, glm::quat const &, vec3_cref scale = glm::vec3(1.0f));
-    glm::vec3& Position() { return m_position; }
-    glm::quat& Rotation() { return m_rotation; }
-    glm::vec3& Scale() { return m_scale; }
-
     const glm::vec3  ToEuler() const;
     const glm::quat& FromEuler(glm::vec3 const &);
     const glm::quat& FromEuler(cref_sp, cref_sp, cref_sp);
-
     inline void Translate(glm::vec3 const &);
     void Translate(cref_sp, cref_sp, cref_sp);
-  protected:
-    glm::vec3 m_position;
-    glm::quat m_rotation;
-    glm::vec3 m_scale;
+    glm::vec3 position;
+    glm::quat rotation;
+    glm::vec3 scale;
   private:
 
   };

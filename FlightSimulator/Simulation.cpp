@@ -16,6 +16,7 @@ void MVC::Simulation::Initialize()
   for (auto& s : m_art_body)
     s->Initialize();
   m_star->Initialize();
+  m_time.SetScale(1e6);
 }
 
 void MVC::Simulation::Update()
@@ -88,4 +89,12 @@ void MVC::Simulation::BuildFromFile(std::string const& file_name)
     m_natural_body.push_back(temp);
   }
 
+}
+
+Kepler::Planet MVC::Simulation::GetBody(size_t pos)
+{
+  Kepler::Planet temp;
+  std::unique_lock<std::mutex> lock(cncr_ctrl->natural_mutex);
+  temp = *(Kepler::Planet *)m_natural_body[pos].get();
+  return temp;
 }

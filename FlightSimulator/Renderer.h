@@ -4,7 +4,9 @@
 #include "ObjectPool.h"
 #include "config.h"
 #include "Camera.h"
-#include "Model.h"
+#include "RenderObject.h"
+#include "FrameTimer.h"
+#include "Simulation.h"
 #include <vector>
 namespace MVC::Render {
   using VerticeVector = std::vector<glm::vec3>;
@@ -17,7 +19,7 @@ namespace MVC::Render {
     GLFWwindow& GetWindow();
     OpenGL::Camera& GetCamera() { return m_camera; }
     void MouseMoveEvent(glm::vec2 mouse_pos);
-    void RenderScene();
+    void RenderScene(MVC::Simulation & sim);
     void ClearBuffer();
   protected:
     ConcurrencyController* cncr_ctrl = nullptr;
@@ -28,8 +30,9 @@ namespace MVC::Render {
     GLuint ProgramID;
     GLuint vertexbuffer;
     OpenGL::Camera m_camera;
-    ::OpenGL::Model m_model;
-    cfg::Window m_config;
+    OpenGL::RenderObject m_cube, m_obj, jupiter;
+    cfg::Master m_config;
+    FrameTimer m_timer;
   private:
     int CreateContext() noexcept;
     void InitGLSettings() noexcept;
