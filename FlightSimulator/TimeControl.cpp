@@ -3,16 +3,14 @@ using TimePoint = std::chrono::time_point<std::chrono::steady_clock>;
 using TimeStamp = std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>;
 using TimeDelta = std::chrono::nanoseconds;
 TimeController::TimeController() :
-  sec_elapsed(0.1),
   time_scale(1.0),
   sim_date(J2000Epoch),
+  MAX_SCALE(1e7),
   Timer()
 {
 }
 
 TimeController::TimeController(double const& val) :
-
-  sec_elapsed(0.1),
   time_scale(val),
   sim_date(J2000Epoch)
 {
@@ -30,6 +28,23 @@ TimeDelta const& TimeController::Stop()
   return delta_t;
 }
 
+
+void TimeController::IncreaseScale()
+{
+  if (time_scale != MAX_SCALE)
+  {
+    time_scale *= 10.0;
+  }
+}
+
+void TimeController::DecreaseScale()
+{
+  if (time_scale != 1.0)
+  {
+    time_scale /= 10.0;
+    std::cout << "Scale: " << time_scale << '\n';
+  }
+}
 
 void TimeController::DisplayDate()
 {

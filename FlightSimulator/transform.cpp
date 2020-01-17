@@ -36,13 +36,13 @@ namespace OpenGL {
 
   glm::quat const& Transform::FromEuler(glm::vec3 const& euler)
   {
-    rotation = glm::eulerAngleXYZ(euler.x, euler.y, euler.z);
+    rotation = glm::quat(euler);
     return rotation;
   }
 
   glm::quat const& Transform::FromEuler(cref_sp x, cref_sp y, cref_sp z)
   {
-    rotation = glm::eulerAngleXYZ(x, y, z);
+    rotation = glm::quat(glm::vec3(x, y, z));
     return rotation;
   }
 

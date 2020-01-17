@@ -7,6 +7,7 @@
 #include "RenderObject.h"
 #include "FrameTimer.h"
 #include "Simulation.h"
+#include "PlanetRender.h"
 #include <vector>
 namespace MVC::Render {
   using VerticeVector = std::vector<glm::vec3>;
@@ -14,12 +15,13 @@ namespace MVC::Render {
   {
   public:
     Renderer();
-    void Initialize();
+    void Initialize(MVC::Simulation &);
     void SetCncrCtrl(ConcurContr& obj) { cncr_ctrl = &obj; }
     GLFWwindow& GetWindow();
     OpenGL::Camera& GetCamera() { return m_camera; }
     void MouseMoveEvent(glm::vec2 mouse_pos);
     void RenderScene(MVC::Simulation & sim);
+    std::vector<std::shared_ptr<Render::PlanetRender>> const& GetPlanets() { return planets; }
     void ClearBuffer();
   protected:
     ConcurrencyController* cncr_ctrl = nullptr;
@@ -30,7 +32,8 @@ namespace MVC::Render {
     GLuint ProgramID;
     GLuint vertexbuffer;
     OpenGL::Camera m_camera;
-    OpenGL::RenderObject m_cube, m_obj, jupiter;
+    std::vector<std::shared_ptr<Render::PlanetRender>> planets;
+    OpenGL::RenderObject center, north;
     cfg::Master m_config;
     FrameTimer m_timer;
   private:

@@ -26,7 +26,6 @@ MVC::Render::Renderer::Renderer() :
   m_window(),
   m_config(std::string(CONFIG_FILE)),
   m_camera(),
-  m_cube(),
   m_timer(m_config.graphics.fps_limit)
 {
   m_camera.SetConfig(m_config.window);
@@ -43,19 +42,20 @@ int MVC::Render::Renderer::CreateContext() noexcept
   }
   glViewport(0, 0, m_config.window.x, m_config.window.y);
   // Ensure we can capture the escape key being pressed below
-  glfwSetInputMode(m_window, GLFW_STICKY_KEYS, GL_TRUE);
+  glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+  glfwSwapInterval(1);
 }
 
 void MVC::Render::Renderer::InitGLSettings() noexcept
 {
-  glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+  glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
   glEnable(GL_DEPTH_TEST);
   glDepthFunc(GL_LESS);
   // Cull triangles which normal is not towards the camera
   glEnable(GL_CULL_FACE);
 }
 
-void MVC::Render::Renderer::Initialize()
+void MVC::Render::Renderer::Initialize(MVC::Simulation & simulation)
 {
   OpenGL::InitGLFW();
   OpenGL::CreateWindow(&m_window, m_config.window.x, m_config.window.y, "View Port");
@@ -67,12 +67,20 @@ void MVC::Render::Renderer::Initialize()
   m_camera.SetProgramID(ProgramID);
   m_camera.GetUniform();
   m_camera.LoadProjection();
-  m_obj = OpenGL::RenderObject(ProgramID, "resources/Sphere.obj", "resources/uvmap.DDS");
-  jupiter = m_cube = m_obj;
-  
-  m_obj.GetTransform().position = glm::vec3(5, 0, 0);
-  m_obj.GetTransform().FromEuler(0.f, 45.f, .0f);
-  m_camera.m_transform.position = { 0, 0, -15 };
+  north = center = OpenGL::RenderObject(ProgramID, "resources/Sphere.obj", "resources/uvmap.DDS");
+  north.GetTransform().position = { 0.f,0.f, 5.f };
+  {
+    std::unique_lock<std::mutex> lock(cncr_ctrl->natural_mutex);
+    for (auto& p : simulation.m_natural_body)
+    {
+      planets.push_back(std::make_shared<PlanetRender>(ProgramID, std::weak_ptr<Kepler::Planet>(std::static_pointer_cast<Kepler::Planet>(p))));
+      /*
+            m_obj.GetTransform().position = glm::vec3(5, 0, 0);
+      m_obj.GetTransform().FromEuler(0.f, 45.f, .0f);
+      m_camera.m_transform.position = { 0, 0, -15 };
+      */
+    }
+  }
 }
 
 GLFWwindow& MVC::Render::Renderer::GetWindow()
@@ -88,24 +96,17 @@ void MVC::Render::Renderer::MouseMoveEvent(glm::vec2 mouse_pos)
 
 void MVC::Render::Renderer::RenderScene(MVC::Simulation & sim)
 {
-  const float rot_incr= M_PI / 128.f;
-  float rot = 0.f;
-  Vector3D vec = sim.GetBody(0).GetVector().p;
-  vec /= 1e7;
-  m_obj.GetTransform().position = { vec.x, vec.y, vec.z };
-  vec = sim.GetBody(1).GetVector().p;
-  vec /= 1e7;
-  m_cube.GetTransform().position = { vec.x, vec.y, vec.z };
-  vec = sim.GetBody(2).GetVector().p;
-  vec /= 1e7;
-  jupiter.GetTransform().position = { vec.x, vec.y, vec.z };
   // Clear the screen
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glUseProgram(ProgramID);
   m_camera.Update();
-  m_obj.Draw(m_camera);
-  m_cube.Draw(m_camera);
-  jupiter.Draw(m_camera);
+  {
+    std::unique_lock<std::mutex> lock(cncr_ctrl->natural_mutex);
+    for (auto& p : planets)
+      p->Draw(m_camera);
+  }
+  center.Draw(m_camera);
+  north.Draw(m_camera);
   glfwSwapBuffers(m_window);
   m_timer.Stop();
   m_timer.Start();

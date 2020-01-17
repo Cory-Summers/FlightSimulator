@@ -9,6 +9,7 @@ namespace OpenGL {
   {
   public:
     Entity(std::string const& name = "unnamed");
+    std::string const& GetName() const { return m_name; }
   protected:
     std::string m_name;
     uint64_t m_id;

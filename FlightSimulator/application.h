@@ -17,12 +17,14 @@ public:
   void Loop();
   void Poll();
   void MouseEvents();
+  void RotateCamera(int direction);
+  void ChangeCameraTarget();
   MVC::Simulation * m_simulation;
   MVC::Render::Renderer * m_renderer;
 private:
+  Timer m_timer;
   MVC::ConcurContr m_cncr_ctrl;
   std::string      m_dataFolder;
-  OpenGL::Camera   m_camera;
   std::thread      sim_thread;
   cfg::Master      m_config;
   float fps_timing;

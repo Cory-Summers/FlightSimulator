@@ -1,20 +1,28 @@
 #include "Camera.h"
+#include "IDrawable.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm\gtx\transform.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 constexpr glm::vec3 CENTER = glm::vec3(0.f, 0.f, 0.f);
+template <typename T>
+bool IsEmpty(std::weak_ptr<T> const& weak) {
+  using wt = std::weak_ptr<T>;
+  return !weak.owner_before(wt{}) && !wt{}.owner_before(weak);
+}
 OpenGL::Camera::Camera()
   : m_config({ 1920, 1080, 0, 90 })
   , UP(0.f, 1.f, 0.f)
-  , m_transform(glm::vec3(4, 3, 3), glm::vec3(0.f, 0.f, 0.f))
+  , m_transform(glm::vec3(0, 0, 4), glm::vec3(0.f, 0.f, glm::pi<float>() * 2 / 3))
+  , m_target()
 {
 }
 
 OpenGL::Camera::Camera(cfg::Window const& config) 
   : m_config(config)
   , UP(0.f, 1.f, 0.f)
-  , m_transform(glm::vec3(4, 3, 3), glm::vec3(0.f, 0.f, 0.f))
+  , m_transform(glm::vec3(0, 0, 4), glm::vec3(0.f, 0.f, glm::pi<float>() * 2 / 3))
+  , m_target()
 {
 }
 
@@ -33,13 +41,13 @@ void OpenGL::Camera::UpdateViewMat()
 
 glm::mat4 OpenGL::Camera::GetWorldToViewMat() const
 {
-  glm::mat4 rot   = glm::mat4(1.0f);
-  glm::mat4 roll  = glm::rotate(rot, m_transform.rotation.x, glm::vec3(0.0f, 0.0f, 1.0f));
-  glm::mat4 pitch = glm::rotate(rot, m_transform.rotation.y, glm::vec3(1.0f, 0.0f, 0.0f));
-  glm::mat4 yaw   = glm::rotate(rot, m_transform.rotation.z, glm::vec3(0.0f, 1.0f, 0.0f));
-  rot = roll * pitch * yaw;
-
-  //return glm::lookAt(m_transform.position, glm::vec3(0.f, 0.f, 0.f), glm::vec3(0,1,0));
+  if(IsEmpty(m_target))
+    return glm::lookAt(m_transform.position, glm::vec3(0.f, 0.f, 0.f),UP);
+  else
+    return glm::lookAt(
+      m_transform.position + m_target.lock()->GetTransform().position, 
+      m_target.lock()->GetTransform().position, 
+      UP);
 }
 
 void OpenGL::Camera::Rotate(float degree, Axis axis)
@@ -64,9 +72,19 @@ glm::mat4 OpenGL::Camera::GetMVP(glm::mat4 const& model_mat) const
   return mvp;
 }
 
+void OpenGL::Camera::SetTarget(std::weak_ptr<IDrawable> const& target)
+{
+  auto& new_center = target.lock()->GetTransform().position;
+  if (IsEmpty(m_target))
+    m_transform.position += new_center;
+  else
+    m_transform.position += new_center - m_target.lock()->GetTransform().position;
+  m_target = target;
+}
+
 void OpenGL::Camera::Update()
 {
-  glm::vec3 lightPos = glm::vec3(0, 0, 0);
+  glm::vec3 lightPos = glm::vec3(0, 5, 0);
   UpdateViewMat();
   glUniform3f(m_light_id, lightPos.x, lightPos.y, lightPos.z);
   glUniformMatrix4fv(m_view_id, 1, GL_FALSE, &(m_view_mat[0][0]));

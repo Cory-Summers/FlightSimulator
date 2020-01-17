@@ -11,17 +11,18 @@ public:
   TimeController();
   TimeController(double const &);
   TimeDelta const& Stop() override;
-  inline double GetCount() const {
-    return sec_elapsed;
-  }
+
   double const& GetScale() const { return time_scale; }
   void SetScale(double const& scale) { time_scale = scale; }
+  void IncreaseScale();
+  void DecreaseScale();
   void DisplayDate();
   TimeStamp const& GetDate() const;
   ~TimeController() {}
 private:
   TimeStamp sim_date;
-  double sec_elapsed = 0.1;
   double time_scale  = 1.0;
+  const double MAX_SCALE = 1e8;
+
 };
 

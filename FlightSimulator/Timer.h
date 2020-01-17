@@ -10,6 +10,9 @@
     Timer();
     inline void Start() { this->start = std::chrono::steady_clock::now(); }
     virtual TimeDelta const& Stop();
+    inline double GetCount() const {
+      return sec_elapsed;
+    }
     void SetLateInterval(TimeDelta const& interval) { late_interval = interval; }
     bool CheckLateUpdate();
 
@@ -19,4 +22,5 @@
     TimeDelta delta_t;
     TimeDelta late_delta;
     TimeDelta late_interval;
+    double sec_elapsed;
 };

@@ -176,16 +176,20 @@
     <ClCompile Include="IDrawable.cpp" />
     <ClCompile Include="kepler-physics.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Message.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="object-loader.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="opengl-tools.cpp" />
+    <ClCompile Include="OrbitalPlane.cpp" />
     <ClCompile Include="planet-class.cpp" />
+    <ClCompile Include="PlanetRender.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RendererView.cpp" />
     <ClCompile Include="RenderObject.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SimMessage.cpp" />
     <ClCompile Include="Simulation.cpp" />
     <ClCompile Include="Socket.cpp" />
     <ClCompile Include="Star.cpp" />
@@ -214,18 +218,23 @@
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="kepler-physics.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Message.h" />
+    <ClInclude Include="MessageTypes.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="object-loader.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="opengl-tools.h" />
+    <ClInclude Include="OrbitalPlane.h" />
     <ClInclude Include="planet-class.h" />
     <ClInclude Include="PlanetObject.h" />
+    <ClInclude Include="PlanetRender.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RendererView.h" />
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="RenderObject.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="SimMessage.h" />
     <ClInclude Include="Simulation.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="Star.h" />
@@ -245,8 +254,8 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
     <None Include="config.json" />
-    <None Include="data\planets.json" />
     <None Include="packages.config" />
+    <None Include="planets.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
@@ -258,6 +267,7 @@
     <Import Project="..\packages\nlohmann.json.3.7.3\build\native\nlohmann.json.targets" Condition="Exists('..\packages\nlohmann.json.3.7.3\build\native\nlohmann.json.targets')" />
     <Import Project="..\packages\Assimp.redist.3.0.0\build\native\Assimp.redist.targets" Condition="Exists('..\packages\Assimp.redist.3.0.0\build\native\Assimp.redist.targets')" />
     <Import Project="..\packages\Assimp.3.0.0\build\native\Assimp.targets" Condition="Exists('..\packages\Assimp.3.0.0\build\native\Assimp.targets')" />
+    <Import Project="..\packages\glfw.3.3.1\build\native\glfw.targets" Condition="Exists('..\packages\glfw.3.3.1\build\native\glfw.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -271,5 +281,6 @@
     <Error Condition="!Exists('..\packages\nlohmann.json.3.7.3\build\native\nlohmann.json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nlohmann.json.3.7.3\build\native\nlohmann.json.targets'))" />
     <Error Condition="!Exists('..\packages\Assimp.redist.3.0.0\build\native\Assimp.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Assimp.redist.3.0.0\build\native\Assimp.redist.targets'))" />
     <Error Condition="!Exists('..\packages\Assimp.3.0.0\build\native\Assimp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Assimp.3.0.0\build\native\Assimp.targets'))" />
+    <Error Condition="!Exists('..\packages\glfw.3.3.1\build\native\glfw.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glfw.3.3.1\build\native\glfw.targets'))" />
   </Target>
 </Project>

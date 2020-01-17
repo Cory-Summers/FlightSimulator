@@ -27,6 +27,7 @@ namespace Kepler {
     virtual Physics::StateVector const& GetVector() const { return m_st_vector; }
     virtual void SetVector(Physics::StateVector const& vector) { m_st_vector = vector; }
     virtual Physics::RotationVector const& GetRotation() const { return m_rotation; }
+    double const& GetRadius() const noexcept { return m_radius; }
     double const& GetMu() const { return mu; }
     ETS::IDField const& GetID() const { return m_id; }
     virtual ObjectType GetType() const = 0;
