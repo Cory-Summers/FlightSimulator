@@ -3,11 +3,11 @@
 #include "Renderer.h"
 #include "Controller.h"
 #include "ConcurrencyController.h"
-#include "config.h"
-#include "Camera.h"
+#include "Utility/config.h"
+#include "OpenGL/Camera.h"
 #include <thread>
 #include <GLFW/glfw3.h>
-#define PLANETS_FILE "planets.json"
+#define PLANETS_FILE "Resources/planets.json"
 
 class Application
 {
@@ -27,6 +27,5 @@ private:
   std::string      m_dataFolder;
   std::thread      sim_thread;
   cfg::Master      m_config;
-  float fps_timing;
 };
 

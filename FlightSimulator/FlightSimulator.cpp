@@ -2,16 +2,13 @@
 //
 #define _ENABLE_EXTENDED_ALIGNED_STORAGE
 #include <iostream>
+#include <fstream>
+#include <memory>
 #include <string>
 #include <vector>
-#include "Star.h"
-#include "TimeControl.h"
-#include "planet-class.h"
-#include "StarSystem.h"
-#include "ViewPort.h"
+
 #include <nlohmann/json.hpp>
-#include <memory>
-#include <fstream>
+
 #include "application.h"
 
 int main()

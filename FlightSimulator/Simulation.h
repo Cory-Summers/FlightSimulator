@@ -2,12 +2,13 @@
 #include <memory>
 #include <vector>
 #include <initializer_list>
-#include "Star.h"
-#include "TimeControl.h"
-#include "ConcurrencyController.h"
-#include "planet-class.h"
-#include "SimMessage.h"
 #include <queue>
+
+#include "Simulation/Star.h"
+#include "Simulation/TimeControl.h"
+#include "ConcurrencyController.h"
+#include "Simulation/planet-class.h"
+#include "Utility/SimMessage.h"
 namespace MVC {
   namespace Render {
     class Renderer;

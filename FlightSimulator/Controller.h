@@ -1,5 +1,5 @@
 #pragma once
-#include "opengl-tools.h"
+#include "OpenGL/opengl-tools.h"
 class Application;
 namespace MVC {
   class Controller

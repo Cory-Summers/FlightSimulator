@@ -1,4 +1,0 @@
-lex.yy.c: In function ‘yy_init_buffer’:
-lex.yy.c:1392:40: warning: implicit declaration of function ‘isatty’ [-Wimplicit-function-declaration]
-         b->yy_is_interactive = file ? (isatty( fileno(file) ) > 0) : 0;
-                                        ^~~~~~

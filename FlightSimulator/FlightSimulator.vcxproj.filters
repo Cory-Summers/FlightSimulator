@@ -51,12 +51,6 @@
     <ClCompile Include="FlightSimulator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Socket.cpp">
-      <Filter>Source Files\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewPort.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Application.cpp">
       <Filter>Source Files\MVC</Filter>
     </ClCompile>
@@ -69,255 +63,204 @@
     <ClCompile Include="Simulation.cpp">
       <Filter>Source Files\MVC</Filter>
     </ClCompile>
-    <ClCompile Include="TimeControl.cpp">
-      <Filter>Source Files\MVC</Filter>
-    </ClCompile>
     <ClCompile Include="ConcurrencyController.cpp">
       <Filter>Source Files\MVC</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Source Files\Opengl</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\Opengl</Filter>
-    </ClCompile>
-    <ClCompile Include="RendererView.cpp">
-      <Filter>Source Files\Opengl</Filter>
-    </ClCompile>
-    <ClCompile Include="Frustum.cpp">
-      <Filter>Source Files\Opengl</Filter>
-    </ClCompile>
-    <ClCompile Include="config.cpp">
-      <Filter>Source Files\MVC</Filter>
-    </ClCompile>
-    <ClCompile Include="crc32-const.cpp">
-      <Filter>Source Files\MVC</Filter>
-    </ClCompile>
-    <ClCompile Include="dds-tools.cpp">
-      <Filter>Source Files\Opengl\Loader</Filter>
-    </ClCompile>
-    <ClCompile Include="GlobalIDManager.cpp">
-      <Filter>Source Files\Simulation</Filter>
-    </ClCompile>
-    <ClCompile Include="IDGenerator.cpp">
-      <Filter>Source Files\Simulation</Filter>
-    </ClCompile>
-    <ClCompile Include="kepler-physics.cpp">
-      <Filter>Source Files\Simulation</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Source Files\Simulation</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectFactory.cpp">
-      <Filter>Source Files\Simulation</Filter>
-    </ClCompile>
-    <ClCompile Include="planet-class.cpp">
-      <Filter>Source Files\Simulation</Filter>
-    </ClCompile>
-    <ClCompile Include="Star.cpp">
-      <Filter>Source Files\Simulation</Filter>
-    </ClCompile>
-    <ClCompile Include="StateElements.cpp">
-      <Filter>Source Files\Simulation</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector3.cpp">
-      <Filter>Source Files\Simulation</Filter>
-    </ClCompile>
-    <ClCompile Include="VectorPool.cpp">
-      <Filter>Source Files\Simulation</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source Files\Opengl</Filter>
-    </ClCompile>
-    <ClCompile Include="opengl-tools.cpp">
-      <Filter>Source Files\Opengl</Filter>
-    </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Source Files\Opengl</Filter>
-    </ClCompile>
-    <ClCompile Include="object-loader.cpp">
-      <Filter>Source Files\Opengl\Loader</Filter>
-    </ClCompile>
-    <ClCompile Include="transform.cpp">
+    <ClCompile Include="Drawables\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
+    <ClCompile Include="Drawables\IDrawable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IDrawable.cpp">
-      <Filter>Source Files\Opengl</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderObject.cpp">
+    <ClCompile Include="Drawables\OrbitalPlane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
+    <ClCompile Include="Drawables\PlanetRender.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Timer.cpp">
+    <ClCompile Include="Drawables\RenderObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FrameTimer.cpp">
+    <ClCompile Include="Network\Socket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlanetRender.cpp">
+    <ClCompile Include="OpenGL\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OrbitalPlane.cpp">
+    <ClCompile Include="OpenGL\dds-tools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SimMessage.cpp">
+    <ClCompile Include="OpenGL\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Message.cpp">
+    <ClCompile Include="OpenGL\object-loader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\opengl-tools.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Simulation\Object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Simulation\planet-class.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Simulation\Star.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Simulation\TimeControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\config.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\crc32-const.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\GlobalIDManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\IDGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Message.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\SimMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\kepler-physics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\StateElements.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\transform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vector3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Simulation\ObjectFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Socket.h">
-      <Filter>Header Files\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="ViewPort.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="application.h">
       <Filter>Header Files\MVC</Filter>
     </ClInclude>
     <ClInclude Include="Controller.h">
       <Filter>Header Files\MVC</Filter>
     </ClInclude>
-    <ClInclude Include="crc32-const.h">
-      <Filter>Header Files\MVC</Filter>
-    </ClInclude>
     <ClInclude Include="Renderer.h">
-      <Filter>Header Files\MVC</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeControl.h">
       <Filter>Header Files\MVC</Filter>
     </ClInclude>
     <ClInclude Include="ConcurrencyController.h">
       <Filter>Header Files\MVC</Filter>
     </ClInclude>
-    <ClInclude Include="WorldObject.h">
+    <ClInclude Include="Drawables\entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlanetObject.h">
+    <ClInclude Include="Drawables\IDrawable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectPool.h">
-      <Filter>Header Files\MVC</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="entity.h">
-      <Filter>Header Files\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="RendererView.h">
-      <Filter>Header Files\MVC</Filter>
-    </ClInclude>
-    <ClInclude Include="Simulation.h">
-      <Filter>Header Files\MVC</Filter>
-    </ClInclude>
-    <ClInclude Include="Frustum.h">
-      <Filter>Header Files\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="config.h">
-      <Filter>Header Files\MVC</Filter>
-    </ClInclude>
-    <ClInclude Include="opengl-tools.h">
-      <Filter>Header Files\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
+    <ClInclude Include="Drawables\OrbitalPlane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="object-loader.h">
-      <Filter>Header Files\OpenGL\Loaders</Filter>
-    </ClInclude>
-    <ClInclude Include="DDS-tools.h">
-      <Filter>Header Files\OpenGL\Loaders</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalIDManager.h">
-      <Filter>Header Files\Simulation</Filter>
-    </ClInclude>
-    <ClInclude Include="IDGenerator.h">
-      <Filter>Header Files\Simulation</Filter>
-    </ClInclude>
-    <ClInclude Include="kepler-physics.h">
-      <Filter>Header Files\Simulation</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Header Files\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Header Files\Simulation</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectFactory.h">
-      <Filter>Header Files\Simulation</Filter>
-    </ClInclude>
-    <ClInclude Include="planet-class.h">
-      <Filter>Header Files\Simulation</Filter>
-    </ClInclude>
-    <ClInclude Include="Star.h">
-      <Filter>Header Files\Simulation</Filter>
-    </ClInclude>
-    <ClInclude Include="StateElements.h">
-      <Filter>Header Files\Simulation</Filter>
-    </ClInclude>
-    <ClInclude Include="ThreadPool.h">
-      <Filter>Header Files\Simulation</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3.h">
-      <Filter>Header Files\Simulation</Filter>
-    </ClInclude>
-    <ClInclude Include="VectorPool.h">
-      <Filter>Header Files\Simulation</Filter>
-    </ClInclude>
-    <ClInclude Include="transform.h">
+    <ClInclude Include="Drawables\PlanetRender.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
+    <ClInclude Include="Drawables\RenderObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IDrawable.h">
+    <ClInclude Include="Network\Socket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RenderObject.h">
+    <ClInclude Include="OpenGL\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="texture.h">
+    <ClInclude Include="OpenGL\DDS-tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Timer.h">
+    <ClInclude Include="OpenGL\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FrameTimer.h">
+    <ClInclude Include="OpenGL\object-loader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlanetRender.h">
+    <ClInclude Include="OpenGL\opengl-tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OrbitalPlane.h">
+    <ClInclude Include="OpenGL\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SimMessage.h">
+    <ClInclude Include="OpenGL\texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Message.h">
+    <ClInclude Include="Simulation\Object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MessageTypes.h">
+    <ClInclude Include="Simulation\planet-class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\Star.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\TimeControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\crc32-const.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\GlobalIDManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\IDGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Message.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\MessageTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\SimMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\kepler-physics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\StateElements.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\ObjectFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="config.json">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
-    <None Include="planets.json">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

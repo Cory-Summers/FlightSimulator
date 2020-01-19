@@ -3,17 +3,13 @@
 #include <string>
 #include <cstdio>
 #include "nlohmann/json.hpp"
-#include "opengl-tools.h"
+#include "OpenGL/opengl-tools.h"
+
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm\gtx\transform.hpp>
 #include <glm/gtx/rotate_vector.hpp>
-// Include GLEW
 #include <GL/glew.h>
-
-// Include GLFW
 #include <GLFW/glfw3.h>
-
-// Include GLM
 #include <glm/glm.hpp>
 static const GLfloat g_vertex_buffer_data[] = {
    -.5f, -.5f, 0.0f,
@@ -25,8 +21,7 @@ static GLuint VertexArrayID;
 MVC::Render::Renderer::Renderer() :
   m_window(),
   m_config(std::string(CONFIG_FILE)),
-  m_camera(),
-  m_timer(m_config.graphics.fps_limit)
+  m_camera()
 {
   m_camera.SetConfig(m_config.window);
 }
@@ -108,8 +103,6 @@ void MVC::Render::Renderer::RenderScene(MVC::Simulation & sim)
   center.Draw(m_camera);
   north.Draw(m_camera);
   glfwSwapBuffers(m_window);
-  m_timer.Stop();
-  m_timer.Start();
 }
 
 void MVC::Render::Renderer::ClearBuffer()

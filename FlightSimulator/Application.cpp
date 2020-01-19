@@ -5,13 +5,11 @@ Application::Application()
   , m_renderer(new MVC::Render::Renderer())
   , m_config("config.json")
   , m_cncr_ctrl()
-  , fps_timing(.1)
   , m_timer()
 {
   m_simulation->SetCncrCtrl(m_cncr_ctrl);
   m_renderer->SetCncrCtrl(m_cncr_ctrl);
   m_simulation->BuildFromFile(std::string(PLANETS_FILE));
-  fps_timing = 1000 / m_config.graphics.fps_limit;
 }
 
 void Application::Initialize()
@@ -58,22 +56,22 @@ void Application::RotateCamera(int direction)
   switch(direction)
   {
   case GLFW_KEY_A:
-    m_renderer->GetCamera().GetTransform().position.x += 10.0 * m_timer.GetCount();
+    m_renderer->GetCamera().GetTransform().position.x += 10.0f * m_timer.GetCount<float>();
     break;
   case GLFW_KEY_D:
-    m_renderer->GetCamera().GetTransform().position.x -= 10.0 * m_timer.GetCount();
+    m_renderer->GetCamera().GetTransform().position.x -= 10.0f * m_timer.GetCount<float>();
     break;
   case GLFW_KEY_W:
-    m_renderer->GetCamera().GetTransform().position.z += 10.0 * m_timer.GetCount();
+    m_renderer->GetCamera().GetTransform().position.z += 10.0f * m_timer.GetCount<float>();
     break;
   case GLFW_KEY_S:
-    m_renderer->GetCamera().GetTransform().position.z -= 10.0 * m_timer.GetCount();
+    m_renderer->GetCamera().GetTransform().position.z -= 10.0f * m_timer.GetCount<float>();
     break;
   case GLFW_KEY_Q:
-    m_renderer->GetCamera().GetTransform().position.y -= 10.0 * m_timer.GetCount();
+    m_renderer->GetCamera().GetTransform().position.y -= 10.0f * m_timer.GetCount<float>();
     break;
   case GLFW_KEY_E:
-    m_renderer->GetCamera().GetTransform().position.y += 10.0 * m_timer.GetCount();
+    m_renderer->GetCamera().GetTransform().position.y += 10.0f * m_timer.GetCount<float>();
     break;
   }
 }

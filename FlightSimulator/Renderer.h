@@ -1,14 +1,12 @@
 #pragma once
-#include "ConcurrencyController.h"
-#include "RendererView.h"
-#include "ObjectPool.h"
-#include "config.h"
-#include "Camera.h"
-#include "RenderObject.h"
-#include "FrameTimer.h"
-#include "Simulation.h"
-#include "PlanetRender.h"
 #include <vector>
+
+#include "ConcurrencyController.h"
+#include "Utility/config.h"
+#include "OpenGL/Camera.h"
+#include "Drawables/RenderObject.h"
+#include "Simulation.h"
+#include "Drawables/PlanetRender.h"
 namespace MVC::Render {
   using VerticeVector = std::vector<glm::vec3>;
   class Renderer
@@ -35,7 +33,6 @@ namespace MVC::Render {
     std::vector<std::shared_ptr<Render::PlanetRender>> planets;
     OpenGL::RenderObject center, north;
     cfg::Master m_config;
-    FrameTimer m_timer;
   private:
     int CreateContext() noexcept;
     void InitGLSettings() noexcept;
