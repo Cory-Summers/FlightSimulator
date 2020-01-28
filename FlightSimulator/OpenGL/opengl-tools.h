@@ -42,4 +42,5 @@ namespace OpenGL
     glBufferData(buffer_type, (buffer.size()) * sizeof(T), &(buffer[0]), option);
     return id;
   }
+  glm::vec3 RotateUp(glm::vec3, float);
 };

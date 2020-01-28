@@ -39,39 +39,36 @@ void Application::Poll()
   double x, y;
   GLFWwindow* window = &(m_renderer->GetWindow());
   glfwPollEvents();
-  //glfwWaitEvents();
   glfwGetCursorPos(window, &x, &y);
   mouse_pos = { static_cast<float>(x), static_cast<float>(y) };
   m_renderer->MouseMoveEvent(mouse_pos);
 }
 
-void Application::MouseEvents()
-{
-}
-
 void Application::RotateCamera(int direction)
 {
+  float delta_t = m_timer.GetCount<float>();
+  OpenGL::Camera& camera = m_renderer->GetCamera();
   if (m_renderer == nullptr)
     return;
   switch(direction)
   {
   case GLFW_KEY_A:
-    m_renderer->GetCamera().GetTransform().position.x += 10.0f * m_timer.GetCount<float>();
+    camera.Rotate(-30.f * delta_t);
     break;
   case GLFW_KEY_D:
-    m_renderer->GetCamera().GetTransform().position.x -= 10.0f * m_timer.GetCount<float>();
+    camera.Rotate(30.f * delta_t);
     break;
   case GLFW_KEY_W:
-    m_renderer->GetCamera().GetTransform().position.z += 10.0f * m_timer.GetCount<float>();
+    camera.GetTransform().position /= 1.f + 1.0f * m_timer.GetCount<float>();
     break;
   case GLFW_KEY_S:
-    m_renderer->GetCamera().GetTransform().position.z -= 10.0f * m_timer.GetCount<float>();
+    camera.GetTransform().position *= 1.f + 1.0f * m_timer.GetCount<float>();
     break;
   case GLFW_KEY_Q:
-    m_renderer->GetCamera().GetTransform().position.y -= 10.0f * m_timer.GetCount<float>();
+    camera.Rotate(-30.f * delta_t, OpenGL::Camera::X_AXIS);
     break;
   case GLFW_KEY_E:
-    m_renderer->GetCamera().GetTransform().position.y += 10.0f * m_timer.GetCount<float>();
+    camera.Rotate(30.f * delta_t, OpenGL::Camera::X_AXIS);
     break;
   }
 }
@@ -81,7 +78,7 @@ void Application::ChangeCameraTarget()
   OpenGL::Camera& camera = m_renderer->GetCamera();
   auto target = camera.GetTarget();
   auto & planets = m_renderer->GetPlanets();
-  if (!target.lock())
+  if (target.lock() == std::static_pointer_cast<OpenGL::IDrawable>(m_renderer->GetCenter()))
   {
     camera.SetTarget(planets[0]);
     std::cout << "Target: " << camera.GetTarget().lock()->GetName() << '\n';
@@ -94,7 +91,7 @@ void Application::ChangeCameraTarget()
       std::cout << "Target: " << camera.GetTarget().lock()->GetName() << '\n';
     }
     else
-      camera.ReleaseTarget();
+      camera.SetTarget(m_renderer->GetCenter());
   }
 }
 

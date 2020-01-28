@@ -2,7 +2,7 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <glm\gtx\transform.hpp>
+#include <glm/gtx/transform.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 
 #include "../Drawables/IDrawable.h"
@@ -56,7 +56,7 @@ void OpenGL::Camera::Rotate(float degree, Axis axis)
 {
   switch (axis) {
   case X_AXIS:
-    m_transform.position = glm::rotateX(m_transform.position, glm::radians(degree));
+    m_transform.position = OpenGL::RotateUp(m_transform.position, glm::radians(degree));
     break;
   case Y_AXIS:
     m_transform.position = glm::rotateY(m_transform.position, glm::radians(degree));
@@ -76,17 +76,12 @@ glm::mat4 OpenGL::Camera::GetMVP(glm::mat4 const& model_mat) const
 
 void OpenGL::Camera::SetTarget(std::weak_ptr<IDrawable> const& target)
 {
-  auto& new_center = target.lock()->GetTransform().position;
-  if (IsEmpty(m_target))
-    m_transform.position += new_center;
-  else
-    m_transform.position += new_center - m_target.lock()->GetTransform().position;
   m_target = target;
 }
 
 void OpenGL::Camera::Update()
 {
-  glm::vec3 lightPos = glm::vec3(0, 5, 0);
+  glm::vec3 lightPos = glm::vec3(0, 0, 0);
   UpdateViewMat();
   glUniform3f(m_light_id, lightPos.x, lightPos.y, lightPos.z);
   glUniformMatrix4fv(m_view_id, 1, GL_FALSE, &(m_view_mat[0][0]));

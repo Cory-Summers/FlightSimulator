@@ -46,7 +46,7 @@ glm::mat4 OpenGL::RenderObject::ModelMatrix()
 {
   glm::mat4 model_mat(1.f);
   model_mat = 
-    glm::scale(m_transform.scale) * 
+    //glm::scale(m_transform.scale) * 
     glm::translate(model_mat, m_transform.position) * 
     glm::toMat4(m_transform.rotation);
   return model_mat;

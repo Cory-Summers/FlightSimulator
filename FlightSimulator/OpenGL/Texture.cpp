@@ -1,5 +1,7 @@
 #include "texture.h"
-
+extern "C" {
+#include <SOIL2.h>
+};
 OpenGL::Texture::Texture()
   : m_texture_id()
   , m_texture()
@@ -33,8 +35,16 @@ void OpenGL::Texture::SetTextureID(std::string const& id_name)
 
 void OpenGL::Texture::LoadTexture(std::string const& file_name)
 {
+  /*
   if (m_program_id == -1)
     throw "No program_id to load texture to!";
   this->m_texture = DDS::loadDDS(file_name.c_str());
-
+  */
+  m_texture = SOIL_load_OGL_texture
+  (
+    file_name.c_str(),
+    SOIL_LOAD_AUTO,
+    SOIL_CREATE_NEW_ID,
+    SOIL_FLAG_DDS_LOAD_DIRECT
+  );
 }

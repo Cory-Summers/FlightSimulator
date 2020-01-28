@@ -6,11 +6,12 @@ MVC::Render::PlanetRender::PlanetRender()
 
 MVC::Render::PlanetRender::PlanetRender(GLuint const& prog_id, std::weak_ptr<Kepler::Planet> planet)
   : m_sim_obj(planet)
-  , RenderObject(prog_id, "resources/Sphere.obj", "resources/uvmap.DDS")
+  , RenderObject(prog_id, "resources/Sphere.obj", "resources/uvmap2.DDS")
   , m_plane(prog_id, planet)
 {
   m_name = planet.lock()->GetName();
   m_transform = OpenGL::Transform();
+  m_transform.scale = glm::vec3((6371.f / planet.lock()->GetRadius()));
   m_buffer.fill(-1);
   Initialize(prog_id);
   m_plane.Initialize();
@@ -26,6 +27,7 @@ void MVC::Render::PlanetRender::Draw(OpenGL::Camera& camera)
   glUniformMatrix4fv((camera.GetMatrixID()), 1, GL_FALSE, &MVP[0][0]);
   glUniformMatrix4fv(m_buffer[OpenGL::OB_MODEL_ID], 1, GL_FALSE, &model_mat[0][0]);
   if (m_texture) m_texture->Bind();
+
   m_mesh->Draw();
   m_plane.Draw(camera);
 }

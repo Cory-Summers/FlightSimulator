@@ -211,5 +211,21 @@ namespace  OpenGL {
     *output = temp;
     return 0;
   }
-
+  /* OpenGL::RotateUp 
+   *  Rotates vector up by (rad) radians towards the zenith of its sphere
+   * 
+   */
+  glm::vec3 RotateUp(glm::vec3 vector, float rad)
+  {
+    glm::vec3   ret;
+    float const magnitude = glm::length(vector); 
+    float const theta     = atan2(vector.z , vector.x); 
+    float       rho   = atanf(vector.y / std::sqrtf(vector.x * vector.x + vector.z * vector.z)) + rad;
+    rho = (rho > glm::radians(85.f)) ? glm::radians(85.f) : rho;
+    ret.x   = std::cosf(theta) * std::cosf(rho);
+    ret.z   = std::sinf(theta) *  std::cosf(rho);
+    ret.y   = std::sinf(rho);
+    ret *= magnitude;
+    return ret;
+  }
 };

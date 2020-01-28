@@ -20,6 +20,7 @@ namespace MVC::Render {
     void MouseMoveEvent(glm::vec2 mouse_pos);
     void RenderScene(MVC::Simulation & sim);
     std::vector<std::shared_ptr<Render::PlanetRender>> const& GetPlanets() { return planets; }
+    std::shared_ptr<OpenGL::RenderObject>const& GetCenter() const { return center; }
     void ClearBuffer();
   protected:
     ConcurrencyController* cncr_ctrl = nullptr;
@@ -31,7 +32,7 @@ namespace MVC::Render {
     GLuint vertexbuffer;
     OpenGL::Camera m_camera;
     std::vector<std::shared_ptr<Render::PlanetRender>> planets;
-    OpenGL::RenderObject center, north;
+    std::shared_ptr<OpenGL::RenderObject> center, north;
     cfg::Master m_config;
   private:
     int CreateContext() noexcept;

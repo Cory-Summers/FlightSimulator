@@ -105,7 +105,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Diuvi\source\repos\FlightSimulator\FlightSimulator\SOIL2\incs;C:\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/wd4996 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -146,7 +146,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Diuvi\source\repos\FlightSimulator\FlightSimulator\SOIL2\incs;C:\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/wd4996 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -188,6 +188,10 @@
     <ClCompile Include="Simulation\planet-class.cpp" />
     <ClCompile Include="Simulation\Star.cpp" />
     <ClCompile Include="Simulation\TimeControl.cpp" />
+    <ClCompile Include="SOIL2\srcs\etc1_utils.c" />
+    <ClCompile Include="SOIL2\srcs\image_DXT.c" />
+    <ClCompile Include="SOIL2\srcs\image_helper.c" />
+    <ClCompile Include="SOIL2\srcs\SOIL2.c" />
     <ClCompile Include="Utility\config.cpp" />
     <ClCompile Include="Utility\crc32-const.cpp" />
     <ClCompile Include="Utility\GlobalIDManager.cpp" />
@@ -223,6 +227,23 @@
     <ClInclude Include="Simulation\planet-class.h" />
     <ClInclude Include="Simulation\Star.h" />
     <ClInclude Include="Simulation\TimeControl.h" />
+    <ClInclude Include="SOIL2\incs\etc1_utils.h" />
+    <ClInclude Include="SOIL2\incs\image_DXT.h" />
+    <ClInclude Include="SOIL2\incs\image_helper.h" />
+    <ClInclude Include="SOIL2\incs\jo_jpeg.h" />
+    <ClInclude Include="SOIL2\incs\pkm_helper.h" />
+    <ClInclude Include="SOIL2\incs\pvr_helper.h" />
+    <ClInclude Include="SOIL2\incs\SOIL2.h" />
+    <ClInclude Include="SOIL2\incs\stbi_DDS.h" />
+    <ClInclude Include="SOIL2\incs\stbi_DDS_c.h" />
+    <ClInclude Include="SOIL2\incs\stbi_ext.h" />
+    <ClInclude Include="SOIL2\incs\stbi_ext_c.h" />
+    <ClInclude Include="SOIL2\incs\stbi_pkm.h" />
+    <ClInclude Include="SOIL2\incs\stbi_pkm_c.h" />
+    <ClInclude Include="SOIL2\incs\stbi_pvr.h" />
+    <ClInclude Include="SOIL2\incs\stbi_pvr_c.h" />
+    <ClInclude Include="SOIL2\incs\stb_image.h" />
+    <ClInclude Include="SOIL2\incs\stb_image_write.h" />
     <ClInclude Include="Utility\config.h" />
     <ClInclude Include="Utility\crc32-const.h" />
     <ClInclude Include="Utility\GlobalIDManager.h" />
@@ -235,6 +256,10 @@
   <ItemGroup>
     <None Include="config.json" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\uvmap.DDS" />
+    <Image Include="Resources\uvmap2.DDS" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

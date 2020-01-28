@@ -12,7 +12,7 @@ namespace MVC::Render {
       void Draw(OpenGL::Camera&) override;
   protected:
     std::weak_ptr<Kepler::Planet> m_sim_obj;
-    double render_scale = 1e-7;
+    double render_scale = 1e-6;
     OpenGL::OrbitalPlane m_plane;
   };
 

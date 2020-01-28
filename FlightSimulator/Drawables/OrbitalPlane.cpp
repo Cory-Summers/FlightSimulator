@@ -5,7 +5,7 @@
 #include <glm/gtx/rotate_vector.hpp>
 #include <glm/gtx/euler_angles.hpp>
 #include <glm/gtc/quaternion.hpp>
-#define SIM_SCALE 1e7f
+#define SIM_SCALE 1e6f
 OpenGL::OrbitalPlane::OrbitalPlane()
   : m_vertex(),   m_planet(), m_elements(), m_transform()
   , m_segments(), model_id(), program_id(), buffer_id()

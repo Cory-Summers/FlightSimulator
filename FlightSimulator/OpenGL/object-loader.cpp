@@ -1,5 +1,4 @@
 #include "object-loader.h"
-#include "Model.h"
 #include <assimp/scene.h>       // Output data structure
 #include <assimp/postprocess.h> // Post processing flags
 namespace OpenGL
